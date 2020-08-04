@@ -50,9 +50,7 @@
       this.$store.dispatch(types.GET_POST, {postId: this.id})
         .then(result => {
           this.post = result;
-        }).fail(error => {
-        console.err(error)
-      });
+        })
     },
     methods: {
       editPost() {

@@ -58,7 +58,7 @@
     },
     methods: {
       pushDetailPage(postId) {
-        this.$router.push({path: `/post/${postId}`});
+        this.$router.push({path: `/posts/${postId}`});
       },
 
       pushInputPage() {

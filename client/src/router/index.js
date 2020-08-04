@@ -10,7 +10,7 @@ export default new Router({
   routes: [
     {path: '/', name: 'home', component: Home},
     {path: '/blah', name: 'about', component: () => import(/* webpackChunkName: "about" */ '../views/Blah.vue')},
-    {path: '/post/:id', name: 'detail', component: BoardDetail, props: true},
+    {path: '/posts/:id', name: 'detail', component: BoardDetail, props: true},
     {path: '/input', name: 'input', component: input},
     {path: '/about/input', name: 'input', component: input},
   ]

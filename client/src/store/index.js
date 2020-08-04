@@ -20,6 +20,7 @@ export default new Vuex.Store({
     },
 
     [types.GET_POST]: ({commit, dispatch}, {postId}) => {
+
       return axios.get(`/api/posts/${postId}`,)
         .then(res => res.data);
     },
@@ -30,12 +31,12 @@ export default new Vuex.Store({
       }
 
       return axios.post(`/api/posts`, post)
-        .then(res => res.data);
+        .then(res => res.headers.location);
     },
 
-    [types.EDIT_POST]: ({}, {post}) => {
-      return axios.put(`/api/posts`, post)
-        .then(res => res.data);
+    [types.EDIT_POST]: ({}, {id, post}) => {
+      axios.put(`/api/posts/${id}`, post);
+      return `posts/${id}`;
     },
 
     [types.DELETE_POST]: ({}, {postId}) => {

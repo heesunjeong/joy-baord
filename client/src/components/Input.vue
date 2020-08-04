@@ -46,7 +46,7 @@
       this.id = this.$route.query.id;
 
       if(this.id) {
-        this.$store.dispatch(types.GET_POST, {postId: id})
+        this.$store.dispatch(types.GET_POST, {postId: this.id})
                 .then(result => {
                   this.title = result.title;
                   this.boardId = result.boardId;
@@ -57,9 +57,7 @@
     methods: {
       write() {
         const post = {id: this.id, title: this.title, contents: this.contents, author: 1, boardId: this.boardId, file: this.file};
-
         this.request(this.id, post);
-        this.$router.push({path: '/'})
       },
 
       cancel() {
@@ -73,7 +71,9 @@
 
       request(id, post) {
         const type = !id ? types.WRITE_POST : types.EDIT_POST;
-        this.$store.dispatch(type, {post});
+        this.$store.dispatch(type, {id: id, post: post}).then(res => {
+          this.$router.push({path: res})
+        });
       }
     }
   }
