@@ -3,6 +3,7 @@ package com.wmp.joyboard.controller;
 import com.wmp.joyboard.domain.Post;
 import com.wmp.joyboard.dto.PostRequestDto;
 import com.wmp.joyboard.dto.PostResponseDto;
+import com.wmp.joyboard.dto.PostsResponseDto;
 import com.wmp.joyboard.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +22,13 @@ public class PostController {
 
     @GetMapping("/{postId}")
     public ResponseEntity findPostById(@PathVariable Long postId) {
-        return ResponseEntity.ok(PostResponseDto.of(postService.findById(postId)));
+        return ResponseEntity.ok(postService.findById(postId));
     }
 
     @PostMapping
     public ResponseEntity createPost(@RequestBody PostRequestDto request) {
         Post savedPost = postService.createPost(request);
-        return ResponseEntity.created(URI.create("posts/" + savedPost.getId())).build();
+        return ResponseEntity.created(URI.create("/posts/" + savedPost.getId())).build();
     }
 
     @PutMapping("{postId}")

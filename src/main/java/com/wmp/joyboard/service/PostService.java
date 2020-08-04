@@ -3,7 +3,6 @@ package com.wmp.joyboard.service;
 import com.wmp.joyboard.domain.Post;
 import com.wmp.joyboard.dto.PostRequestDto;
 import com.wmp.joyboard.repository.PostRepository;
-import javafx.geometry.Pos;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +18,10 @@ public class PostService {
 
     public List<Post> findAllByBoardId(Long boardId) {
         return postRepository.findAllByBoardId(boardId);
+    }
+
+    public long countPostByBoardId(Long boardId) {
+        return postRepository.countPostByBoardId(boardId);
     }
 
     public Post findById(Long id) {

@@ -1,6 +1,7 @@
 package com.wmp.joyboard.controller;
 
 import com.wmp.joyboard.dto.PostResponseDto;
+import com.wmp.joyboard.dto.PostsResponseDto;
 import com.wmp.joyboard.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,9 @@ public class BoardController {
 
     @GetMapping("/{boardId}/posts")
     public ResponseEntity findPostsByBoardId(@PathVariable Long boardId) {
-        return ResponseEntity.ok(PostResponseDto.listOf(postService.findAllByBoardId(boardId)));
+        return ResponseEntity.ok(PostsResponseDto.builder()
+                .totalCount(postService.countPostByBoardId(boardId))
+                .list(postService.findAllByBoardId(boardId))
+                .build());
     }
-
 }
