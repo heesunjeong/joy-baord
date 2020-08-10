@@ -2,8 +2,6 @@ package com.wmp.joyboard.controller;
 
 import com.wmp.joyboard.domain.Post;
 import com.wmp.joyboard.dto.PostRequestDto;
-import com.wmp.joyboard.dto.PostResponseDto;
-import com.wmp.joyboard.dto.PostsResponseDto;
 import com.wmp.joyboard.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

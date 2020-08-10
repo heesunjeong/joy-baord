@@ -1,4 +1,4 @@
-package com.wmp.joyboard.config;
+package com.wmp.joyboard.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

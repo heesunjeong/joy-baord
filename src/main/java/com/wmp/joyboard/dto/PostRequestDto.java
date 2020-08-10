@@ -3,7 +3,9 @@ package com.wmp.joyboard.dto;
 import com.wmp.joyboard.domain.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @Getter
 @NoArgsConstructor
 public class PostRequestDto {

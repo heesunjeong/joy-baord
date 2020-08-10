@@ -1,6 +1,5 @@
 package com.wmp.joyboard.domain;
 
-import com.wmp.joyboard.config.BaseEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
