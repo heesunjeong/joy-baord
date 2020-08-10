@@ -15,7 +15,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class PostControllerTest extends AcceptanceTest {
+public class PostAcceptanceTest extends AcceptanceTest {
 
     @BeforeEach
     public void setUp() {
