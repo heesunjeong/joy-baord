@@ -1,4 +1,4 @@
-#  joy-board
+#  ✏️ 조이의 게시판
 
 ## Getting Started
 start BootRun
@@ -12,5 +12,3 @@ cd client
 npm install
 npm run serve
 ```
-# joy-board
-# joy-baord
