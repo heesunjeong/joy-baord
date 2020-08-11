@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -47,14 +48,16 @@ public class PostControllerTest2 {
         when(postService.createPost(any())).thenReturn(Post.builder().id(1L).build());
 
         // when
-        MvcResult result = mockMvc.perform(
+        ResultActions result = mockMvc.perform(
                 post("/posts")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
-                .andDo(print())
-                .andExpect(status().isCreated())
-                .andExpect(header().exists("Location"))
-                .andReturn();
+                .andDo(print());
+
+        //then
+        result.andExpect(status().isCreated())
+                .andExpect(header().exists("Location"));
+
     }
 
     @Test

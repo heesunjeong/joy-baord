@@ -40,6 +40,5 @@ public class PostServiceTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> postService.findById(1L))
                 .withMessageStartingWith("Invalid post id.");
-
     }
 }

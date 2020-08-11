@@ -1,0 +1,27 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:operation-http-request-title: Example Request
+:operation-http-response-title: Example Response
+
+[[resources]]
+= Resources
+
+[[resources-joyboard]]
+== 조이의 게시판
+
+[[resources-posts-create]]
+=== 게시판 글 작성
+
+operation::posts/create[snippets='http-request,http-response']
+
+[[resources-posts-create]]
+=== 게시판 글 조회
+
+operation::posts/find[snippets='http-request,path-parameters,http-response,response-fields']
