@@ -1,6 +1,7 @@
 package com.wmp.joyboard.repository;
 
 import com.wmp.joyboard.domain.Post;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,8 +24,9 @@ public class PostRepositoryTest {
     void setUp() {
         Post post = new Post(null, 1L, "This is JPA test", "Joy Joeng", "Hello World");
         Post post2 = new Post(null, 2L, "This is not JPA test", "Joy Joeng", "Hello World");
-        postRepository.save(post);
-        postRepository.save(post2);
+        Post post3 = new Post(null, 2L, "This is not JPA test2", "Joy Joeng", "Hello World");
+
+        postRepository.saveAll(Lists.newArrayList(post, post2, post3));
     }
 
     @Test
@@ -38,10 +40,10 @@ public class PostRepositoryTest {
 
     @Test
     void findAllByBoardId() {
-        List<Post> posts = postRepository.findAllByBoardId(1L);
+        List<Post> posts = postRepository.findAllByBoardId(2L);
 
-        assertThat(posts).hasSize(1);
-        assertThat(posts.get(0)).extracting(Post::getBoardId).isEqualTo(1L);
-        assertThat(posts.get(0)).extracting(Post::getTitle).isEqualTo("This is JPA test");
+        assertThat(posts).hasSize(2);
+        assertThat(posts).extracting(Post::getBoardId).containsExactly(2L, 2L);
+        assertThat(posts).extracting(Post::getTitle).containsExactly("This is not JPA test", "This is not JPA test2");
     }
 }

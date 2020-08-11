@@ -6,6 +6,7 @@ import com.wmp.joyboard.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RequestMapping("posts")
@@ -18,13 +19,13 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/{postId}")
+    @GetMapping("{postId}")
     public ResponseEntity findPostById(@PathVariable Long postId) {
         return ResponseEntity.ok(postService.findById(postId));
     }
 
     @PostMapping
-    public ResponseEntity createPost(@RequestBody PostRequestDto request) {
+    public ResponseEntity createPost(@RequestBody @Valid PostRequestDto request) {
         Post savedPost = postService.createPost(request);
         return ResponseEntity.created(URI.create("/posts/" + savedPost.getId())).build();
     }

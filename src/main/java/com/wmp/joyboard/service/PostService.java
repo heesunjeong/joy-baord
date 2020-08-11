@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
 @Service
 public class PostService {
 
@@ -18,17 +17,14 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    @Transactional(readOnly = true)
     public List<Post> findAllByBoardId(Long boardId) {
         return postRepository.findAllByBoardId(boardId);
     }
 
-    @Transactional(readOnly = true)
     public long countPostByBoardId(Long boardId) {
         return postRepository.countPostByBoardId(boardId);
     }
 
-    @Transactional(readOnly = true)
     public Post findById(Long id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post id. id: " + id));
@@ -38,6 +34,7 @@ public class PostService {
         return postRepository.save(request.toEntity());
     }
 
+    @Transactional
     public void updatePost(Long postId, PostRequestDto request) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Request"));
@@ -45,6 +42,10 @@ public class PostService {
     }
 
     public void deletePost(Long postId) {
+        if (postRepository.existsById(postId)) {
+            throw new IllegalArgumentException("Invalid post id. id: " + postId);
+        }
+
         postRepository.deleteById(postId);
     }
 }

@@ -1,6 +1,5 @@
 package com.wmp.joyboard.controller;
 
-import com.wmp.joyboard.dto.PostResponseDto;
 import com.wmp.joyboard.dto.PostsResponseDto;
 import com.wmp.joyboard.service.PostService;
 import org.springframework.http.ResponseEntity;

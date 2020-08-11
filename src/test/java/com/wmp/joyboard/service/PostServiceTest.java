@@ -2,7 +2,6 @@ package com.wmp.joyboard.service;
 
 import com.wmp.joyboard.domain.Post;
 import com.wmp.joyboard.repository.PostRepository;
-import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -10,7 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -27,9 +27,9 @@ public class PostServiceTest {
 
     @Test
     void findById() {
-        given(postRepository.findById(1L)).willReturn(Optional.ofNullable(Post.builder().id(1L).build()));
+        given(postRepository.findById(any())).willReturn(Optional.ofNullable(Post.builder().id(1L).build()));
 
-        postService.findById(1L);
+        postService.findById(4L);
 
         verify(postRepository).findById(1L);
     }
@@ -38,6 +38,8 @@ public class PostServiceTest {
     void findByIdThrowInvalidArgumentException() {
         given(postRepository.findById(1L)).willReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> postService.findById(1L));
+        assertThatIllegalArgumentException().isThrownBy(() -> postService.findById(1L))
+                .withMessageStartingWith("Invalid post id.");
+
     }
 }
