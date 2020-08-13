@@ -21,7 +21,7 @@ endif::[]
 
 operation::posts/create[snippets='http-request,http-response']
 
-[[resources-posts-create]]
+[[resources-posts-find]]
 === 게시판 글 조회
 
 operation::posts/find[snippets='http-request,path-parameters,http-response,response-fields']

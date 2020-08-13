@@ -2,6 +2,7 @@ package com.wmp.joyboard.service;
 
 import com.wmp.joyboard.domain.Post;
 import com.wmp.joyboard.dto.PostRequestDto;
+import com.wmp.joyboard.exception.InvalidAuthorNameException;
 import com.wmp.joyboard.repository.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,13 @@ public class PostService {
     }
 
     public Post createPost(PostRequestDto request) {
-        return postRepository.save(request.toEntity());
+        Post post = request.toEntity();
+
+        if (!post.validateAuthor()) {
+            throw new InvalidAuthorNameException();
+        }
+
+        return postRepository.save(post);
     }
 
     @Transactional

@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(PostController.class)
-public class PostControllerTest2 {
+public class PostControllerUnitTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,7 +33,7 @@ public class PostControllerTest2 {
     private final ObjectMapper objectMapper;
 
 
-    public PostControllerTest2() {
+    public PostControllerUnitTest() {
         this.objectMapper = new ObjectMapper();
     }
 

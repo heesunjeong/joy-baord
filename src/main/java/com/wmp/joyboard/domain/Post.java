@@ -12,6 +12,9 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class Post extends BaseEntity {
+    public static final String NAME_JOY_KOREAN = "조이";
+    public static final String NAME_JOY_ENGLISH = "joy";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,5 +36,9 @@ public class Post extends BaseEntity {
         this.boardId = boardId;
         this.title = title;
         this.contents = contents;
+    }
+
+    public boolean validateAuthor() {
+        return !author.equals(NAME_JOY_KOREAN) && !author.equals(NAME_JOY_ENGLISH);
     }
 }

@@ -2,8 +2,10 @@ package com.wmp.joyboard.controller;
 
 import com.wmp.joyboard.domain.Post;
 import com.wmp.joyboard.dto.PostRequestDto;
+import com.wmp.joyboard.exception.InvalidAuthorNameException;
 import com.wmp.joyboard.service.PostService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -40,5 +42,10 @@ public class PostController {
     public ResponseEntity deletePost(@PathVariable("postId") Long postId) {
         postService.deletePost(postId);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class, InvalidAuthorNameException.class})
+    public ResponseEntity notValidExceptionHandler() {
+        return ResponseEntity.badRequest().build();
     }
 }
